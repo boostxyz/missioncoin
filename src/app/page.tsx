@@ -1,10 +1,22 @@
+"use client";
+
+import { useCreateCoin } from "@/app/create-coin";
+import { Button } from "@boostxyz/boost-ui/components/Button";
+
 export default function Home() {
+  const { mutate: createCoin } = useCreateCoin();
+
+  const onClick = () => {
+    createCoin({
+      tokenName: "Mission Coin",
+      tokenSymbol: "MC",
+      initialSupply: 1000000,
+    });
+  };
+
   return (
-    <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil quo vitae
-      sed dignissimos corrupti voluptatibus eius distinctio similique tempore ex
-      maiores doloremque perferendis qui, maxime, molestias corporis. Veritatis,
-      quia velit.
+    <main className="py-4 h-full">
+      <Button onClick={onClick}>Create Coin</Button>
     </main>
   );
 }

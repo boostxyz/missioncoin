@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Providers } from "@/app/Providers";
 import { headers } from "next/headers";
 
 import "@rainbow-me/rainbowkit/styles.css";
+import "@boostxyz/boost-ui/typography/fonts.css";
+import "@boostxyz/boost-ui/styles/colors.css";
+import "@boostxyz/boost-ui/styles/theme.css";
 import "./globals.css";
+import { Footer } from "@/app/Footer";
+import { Header } from "@/app/Header";
 
 // const geistSans = Geist({
 //   variable: "--font-geist-sans",
@@ -29,11 +33,14 @@ export default async function RootLayout({
   const headerz = await headers();
 
   return (
-    <html lang="en">
+    <html lang="en" id="app">
       <body className="antialiased">
         <Providers cookie={headerz.get("cookie")}>
-          <ConnectButton />
-          {children}
+          <main className="grid grid-rows-[auto_1fr_auto] min-h-[100lvh] p-10">
+            <Header />
+            {children}
+            <Footer />
+          </main>
         </Providers>
       </body>
     </html>
